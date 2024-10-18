@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 // Configuración de Sequelize
 const sequelize = new Sequelize('database', 'username', 'password', {
-  host: 'localhost',
+  host: process.env.DB_HOST || 'localhost',
   dialect: 'mysql', // o 'postgres', 'sqlite', etc.
 });
 
