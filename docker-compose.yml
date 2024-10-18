@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0  # Usamos MySQL 8.0 para compatibilidad con múltiples arquitecturas
+    container_name: mysql_containerB
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}  # Contraseña de root de MySQL
+      MYSQL_DATABASE: ${DB_NAME}     # Base de datos inicial
+      MYSQL_USER: ${DB_USER}             # Usuario de MySQL (opcional si se usa root)
+    ports:
+      - "3307:3306"  # Mapea el puerto 3306 dentro del contenedor al puerto 3307 del host
+    volumes:
+      - mysql_data:/var/lib/mysql  # Volumen para persistir los datos de MySQL
+    networks:
+      - mynetwork
+
+  app:
+    image: jalcon00/todo-api:latest  # Imagen desde Docker Hub
+    container_name: node_app
+    environment:
+      DB_HOST: mysql
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    depends_on:
+      - mysql
+    ports:
+      - "3002:3000"
+
+volumes:
+  mysql_data:  # Define el volumen para almacenar los datos de MySQL de manera persistente
+
+networks:
+  mynetwork:
+    driver: bridge  # Usa el driver "bridge" para que ambos servicios puedan comunicarse
