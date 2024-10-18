@@ -5,7 +5,7 @@ services:
     image: mysql:8.0  # Usamos MySQL 8.0 para compatibilidad con múltiples arquitecturas
     container_name: mysql_containerB
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}  # Contraseña de root de MySQL
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}  # Contraseña de root de MySQL XD
       MYSQL_DATABASE: ${DB_NAME}     # Base de datos inicial
       MYSQL_USER: ${DB_USER}             # Usuario de MySQL (opcional si se usa root)
     ports:
