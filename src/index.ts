@@ -12,7 +12,7 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 });
 
 app.use(express.json()); // Middleware para procesar JSON
-app.use('/api', todoRoutes); // Verifica que las rutas estén prefijadas correctamente
+app.use('/', todoRoutes); // Verifica que las rutas estén prefijadas correctamente
 
 // Conectar a la base de datos y luego iniciar el servidor
 sequelize.authenticate()
