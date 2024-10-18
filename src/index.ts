@@ -1,13 +1,17 @@
 import express from 'express';
 import todoRoutes from './routes/todoRoutes';
 import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv';
+
+// Cargar variables de entorno desde el archivo .env
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configuración de Sequelize
-const sequelize = new Sequelize('database', 'username', 'password', {
-  host: process.env.DB_HOST || 'localhost',
+// Configuración de Sequelize usando variables de entorno
+const sequelize = new Sequelize(process.env.DB_NAME!, process.env.DB_USER!, process.env.DB_PASSWORD!, {
+  host: process.env.DB_HOST,
   dialect: 'mysql', // o 'postgres', 'sqlite', etc.
 });
 
