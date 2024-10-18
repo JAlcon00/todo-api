@@ -8,6 +8,7 @@ export const getTodos = async (req: Request, res: Response): Promise<void> => {
     const todos = await Todo.findAll();
     res.status(200).json(todos);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Error al obtener las tareas' });
   }
 };
@@ -23,6 +24,7 @@ export const getTodoById = async (req: Request, res: Response): Promise<void> =>
       res.status(404).json({ message: 'Tarea no encontrada' });
     }
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Error al obtener la tarea' });
   }
 };
@@ -54,6 +56,7 @@ export const updateTodo = async (req: Request, res: Response): Promise<void> => 
       res.status(404).json({ message: 'Tarea no encontrada' });
     }
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Error al actualizar la tarea' });
   }
 };
@@ -70,6 +73,7 @@ export const deleteTodo = async (req: Request, res: Response): Promise<void> => 
       res.status(404).json({ message: 'Tarea no encontrada' });
     }
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Error al eliminar la tarea' });
   }
 };
